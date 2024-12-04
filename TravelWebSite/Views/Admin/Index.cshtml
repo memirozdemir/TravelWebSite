@@ -1,0 +1,30 @@
+﻿@model List<TravelWebSite.Models.Classes.Blog>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>Blog List</h2>
+<br />
+<table class="table table-responsive">
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Created Date</th>
+        <th>Details</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+    <tr>
+        <td>@x.ID</td>
+        <td>@x.Title</td>
+        <td>@x.Date.ToString("dd-MMM-yyyy")</td>
+        <td><a href="/Admin/Details/@x.ID" class="btn btn-outline-success">Details</a></td>
+        <td><a href="/Admin/Edit/@x.ID" class="btn btn-primary">Edit</a></td>
+        <td><a href="/Admin/Delete/@x.ID" class="btn btn-danger">Delete</a></td>
+    </tr>
+    }
+</table>
+<br />
+<a href="/Admin/NewContent" class="btn btn-success">Create new content</a>

@@ -1,0 +1,22 @@
+﻿@model TravelWebSite.Models.Classes.Blog
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Edit content</h2>
+<br />
+<form class="form-group" method="post">
+    @Html.HiddenFor(x=>x.ID)
+    <label style="font-size:25px">Title</label>
+    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+    <br />
+    <label style="font-size:25px">Image URL</label>
+    @Html.TextBoxFor(x => x.BlogIMG, new { @class = "form-control" })
+    <br />
+    <label style="font-size:25px">Content</label>
+    @Html.TextAreaFor(x => x.Description, new { @class = "form-control", rows = 15 })
+    <br />
+    <button class="btn btn-outline-success">Save changes</button>
+</form>
+

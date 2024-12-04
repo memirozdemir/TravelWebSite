@@ -1,0 +1,78 @@
+﻿@model TravelWebSite.Models.Classes.BlogComments
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE HTML>
+<html>
+<head>
+   
+    <link href="/web2/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="/web2/css/style.css" rel='stylesheet' type='text/css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Personal Blog Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!----webfonts---->
+    <link href='http://fonts.googleapis.com/css?family=Oswald:100,400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,300italic' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class="single">
+        <div class="container">
+            <div class="col-md-8 single-main">
+                @foreach (var x in Model.blogs)
+                {
+                <div class="single-grid">
+                    <img src="@x.BlogIMG" alt="" />
+                    <br />
+                    <br />
+                    <a href="/Blog/Details/@x.ID">@x.Title</a>
+                    <p>
+                        @x.Description.Substring(0, 200)... <a href="/Blog/Details/@x.ID">See more</a>
+                    </p>
+                </div>
+                <br /><br />
+                }
+                <ul class="comment-list">
+                    <h5 class="post-author_head">Written by <a href="#" title="Posts by admin" rel="author">admin</a></h5>
+                    <li>
+                        <img src="/web2/images/avatar.png" class="img-responsive" alt="">
+                        <div class="desc">
+                            <p>View all posts by: <a href="#" title="Posts by admin" rel="author">admin</a></p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-4 side-content">
+                <div class="recent">
+                    <h3>Recent Posts</h3>
+                    <ul>
+                        @foreach (var x in Model.recentblogs)
+                        {
+                            <li><a href="/Blog/Details/@x.ID">@x.Title</a></li>
+                        }
+                    </ul>
+                    
+                </div>
+                <div class="comments">
+                    <h3>Recent Comments</h3>
+                    <ul>
+                    @foreach (var x in Model.recentcomments)
+                    {
+                        <li>@x.Username on <a href="/Blog/Details/@x.BlogID">@x.Blog.Title</a></li>
+                    }
+                    </ul>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

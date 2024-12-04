@@ -1,0 +1,80 @@
+﻿@model TravelWebSite.Models.Classes.BlogComments
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link href="/web2/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="/web2/css/style.css" rel='stylesheet' type='text/css' />
+    <!----webfonts---->
+    <link href='http://fonts.googleapis.com/css?family=Oswald:100,400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,300italic' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class="single">
+        <div class="container">
+            <div class="col-md-8 single-main">
+                @foreach (var x in Model.blogs)
+                {
+                    <div class="single-grid">
+
+                        <img src="@x.BlogIMG" alt="" style="margin-bottom:20px" />
+                        <h3 style="color:#3b3b3b ">@x.Title</h3>
+                        <p>
+                            @x.Description
+                        </p>
+                        <span style="color:#3b3b3b "><label>Created date:</label> @x.Date</span>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+    <div class="comments-section">
+        <h2>Comments</h2>
+        <br />
+        @if (Model.comments != null && Model.comments.Any())
+        {
+            foreach (var comment in Model.comments)
+            {
+                <div class="comment" style="border-bottom: 1px solid #ddd; margin-bottom: 15px; padding-bottom: 10px;">
+                    <p><strong>@comment.Username:</strong> @comment.CommentText</p>
+                    <a class="btn btn-success" href="/Admin/Comment/@comment.ID">Confirm Comment</a>
+                    <a class="btn btn-danger" href="/Admin/CommentDelete/@comment.ID">Delete Comment</a>
+                </div>
+            }
+        }
+        else
+        {
+            <p>No comments available for this blog.</p>
+        }
+
+        <!-- Paging -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                @{
+                    int currentPage = ViewBag.CurrentPage ?? 1;
+                    int totalComments = ViewBag.TotalComments;
+                    int pageSize = ViewBag.PageSize ?? 5;
+                    int totalPages = (int)Math.Ceiling((double)totalComments / pageSize);
+
+                    for (int i = 1; i <= totalPages; i++)
+                    {
+                        var activeClass = i == currentPage ? "active" : "";
+                        <li class="@activeClass">
+                            <a href="?page=@i">@i</a>
+                        </li>
+                    }
+                }
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>
+
+
+
+

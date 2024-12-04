@@ -1,0 +1,19 @@
+﻿@using TravelWebSite.Models.Classes
+@model List<Blog>
+@{int count = 0; }
+<div class="grids">
+    <div class="box1">
+        <div class="padding">
+            <h4>This Week's Top 10</h4>
+            <ul class="list list-pad">
+                @foreach (var x in Model)
+                {
+                    count++;
+                    <li class="list-bg"><span style="color:#a2365a">@count</span><a href="/Blog/Details/@x.ID">@x.Title</a></li>
+                }
+            </ul>
+        </div>
+        @Html.Action("PartialBestPlaces", "Home")
+        <div class="clear"></div>
+    </div>
+</div>

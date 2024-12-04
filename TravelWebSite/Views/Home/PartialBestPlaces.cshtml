@@ -1,0 +1,41 @@
+﻿@using TravelWebSite.Models.Classes
+@model List<Blog>
+<div class="padding1">
+    <h4>Our Best Places</h4>
+    @*<div class="box-left">
+            <div class="bot-img">
+                <img src="/web/images/pic3.jpg" alt="" />
+            </div>
+            <div class="bot-desc">
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet </p>
+            </div>
+            <div class="clear"></div>
+            <div class="bot-img">
+                <img src="/web/images/pic7.jpg" alt="" />
+            </div>
+            <div class="bot-desc">
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet </p>
+            </div>
+            <div class="clear"></div>
+            <div class="bot-img">
+                <img src="/web/images/pic8.jpg" alt="" />
+            </div>
+            <div class="bot-desc">
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet </p>
+            </div>
+            <div class="clear"></div>
+        </div>*@
+    @foreach (var x in Model)
+    {
+        <div class="box1-left">
+            <div class="bot-img">
+                <a href="/Blog/Details/@x.ID"><img src="@x.BlogIMG" alt="" style="width:120px;height:80px;" /></a>
+            </div>
+            <div class="bot-desc1">
+                <p>@x.Description.Substring(0,100) </p>
+            </div>
+            <div class="clear"></div>
+        </div>
+    }
+        <div class="clear"></div>
+    </div>
